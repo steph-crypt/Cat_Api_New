@@ -25,7 +25,6 @@ class Play extends React.Component {
       </button>
     );
   }
-
 }
 
 export default Play;
