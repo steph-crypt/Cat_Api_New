@@ -1,15 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Cat = props => {
+class Cat extends Component {
+  render() {
+    console.log(this.props.cat);
   return (
     <div className="card">
       <div className="cat-specs">
-        <h1>{props.id}</h1>
-        <h2>{props.name}, {props.life_span}</h2>
-        <h2>{props.temperment}</h2>
+        <h1>{this.props.cat.id ? this.props.cat.id : "None"}</h1>
       </div>
     </div>
-  );
+  )};
 }
 
 export default Cat;
