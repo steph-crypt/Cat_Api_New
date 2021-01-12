@@ -23,7 +23,11 @@ class App extends Component {
 
   handlePlay = () => {
    this.setState({time: this.state.time -1});
-  }
+  };
+
+  handleCats = () => {
+    this.setState({cats[index] + 1});
+  };
 
   componentDidMount = () => {
     fetch("https://api.thecatapi.com/v1/breeds")
@@ -36,7 +40,7 @@ class App extends Component {
          });
       },
     )
-  }
+  };
 
   render() {
       return (
