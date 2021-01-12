@@ -3,17 +3,18 @@ import React, { Component } from "react";
 class Cat extends Component {
   constructor(props) {
     super(props);
-  } render() {
-    console.log(this.props.cat.message);
-  return (
-    <div className="card">
-      <div className="cat-specs">
-      <img src={this.props.cat.message} alt={name} />
-        <h1>{this.props.cat.message ? this.props.cat.message : "None"}</h1>
-      </div>
-    </div>
-  )
   }
+    render() {
+      var { isLoaded, cat } = this.props;
+       console.log(cat)
+          return (
+            <div className="card">
+                <img src={cat.image.url} alt="cat img" />
+                <h1>{cat.name}</h1>
+                <h2>{cat.temperment}</h2>
+            </div>
+          )
+    }
 }
 
 export default Cat;

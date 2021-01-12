@@ -7,16 +7,17 @@ import Like from "./Like";
 import Dislike from "./Dislike";
 import Skip from "./Skip";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
       this.state = {
         time: 60,
-        cat: {},
-        likeArray: [],
-        dislikeArray: [],
-        skipArray: []
+        cats: [],
+        like: false,
+        dislike: false,
+        skip: false,
+        isLoaded: false,
+        index: 0
       };
   }
 
@@ -24,48 +25,40 @@ class App extends Component {
    this.setState({time: this.state.time -1});
   }
 
-  // handleGame = () => {
-    //on click should make the api call aagain.
-  //   this.setState({likeArray: [...this.state.likeArray, newel]});
-  //   this.setState({dislikeArray: [...this.state.dislikeArray, newel]});
-  //   this.setState({skipArray: [...this.state.skipArray, newel]});
-  // }
-
   componentDidMount = () => {
-    fetch("https://dog.ceo/api/breeds/image/random")
+    fetch("https://api.thecatapi.com/v1/breeds")
       .then(res => res.json())
       .then(
         (result)=> {
-        console.log(result);
         this.setState({
-          cat: result
+          cats: result,
+          isLoaded: true
          });
       },
     )
   }
 
-
   render() {
-    console.log(this.state.cat);
-    return (
-    <div className="container">
-      <div className="left-column">
-        <h1 id="header">Kitty Tinder</h1>
-          <Play handlePlay={this.handlePlay}/>
-          <Timer time={this.state.time}/>
-          <Like />
-          <Dislike />
-          <Skip />
-      </div>
-      <div className="right-column">
-        <Cat cat={this.state.cat}/>
-      </div>
-    </div>
-    )
-  }
-}
-
+      return (
+        <div className="container">
+          <div className="left-column">
+            <h1 id="header">Kitty Tinder</h1>
+              <Play handlePlay={this.handlePlay}/>
+              <Timer time={this.state.time}/>
+              <Like />
+              <Dislike />
+              <Skip />
+          </div>
+          <div className="right-column">
+            {this.state.cats.length ? <Cat cat={this.state.cats[this.state.index]}/> : null }
+          </div>
+        </div>
+        )
+      }
+};
 
 ReactDOM.render(<App />, document.getElementById("root"));
+
+
 
 
