@@ -25,10 +25,6 @@ class App extends Component {
    this.setState({time: this.state.time -1});
   };
 
-  handleCats = () => {
-    this.setState({cats[index] + 1});
-  };
-
   componentDidMount = () => {
     fetch("https://api.thecatapi.com/v1/breeds")
       .then(res => res.json())
@@ -36,7 +32,10 @@ class App extends Component {
         (result)=> {
         this.setState({
           cats: result,
-          isLoaded: true
+          isLoaded: true,
+          like: true,
+          dislike: true,
+          skip: true
          });
       },
     )
@@ -49,7 +48,11 @@ class App extends Component {
             <h1 id="header">Kitty Tinder</h1>
               <Play handlePlay={this.handlePlay}/>
               <Timer time={this.state.time}/>
-              <Like />
+              <Like
+                cats={this.state.cats}
+                cat={this.state.cats[this.state.index]}
+                handleCat={this.handleCat}
+                index={[this.state.index]}/>
               <Dislike />
               <Skip />
           </div>

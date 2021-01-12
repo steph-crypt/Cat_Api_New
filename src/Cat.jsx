@@ -5,8 +5,7 @@ class Cat extends Component {
     super(props);
   }
     render() {
-      var { isLoaded, cat } = this.props;
-       console.log(cat)
+      var { cat } = this.props;
           return (
             <div className="card">
                 <img src={cat.image.url} alt="cat img" />

@@ -5,9 +5,10 @@ class Skip extends React.Component {
     super(props);
   }
       render() {
-        // this.props.handleGame();
       return(
-        <button>Skip</button>
+        <div className="buttons">
+          <button id="skip" onClick={this.handleCats}>Skip</button>
+        </div>
     );
   }
 }
