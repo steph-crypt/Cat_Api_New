@@ -6,22 +6,18 @@ import React from "react";
 class Timer extends React.Component {
    constructor(props) {
     super(props);
+    this.state = {
+      minutes: 1,
+      seconds: 0
+    }
+    this.setTimer = this.setTimer.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.timerID = setInterval(
-  //     () => this.tick(),
-  //     1000
-  //   );
-  // }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.timerID);
-  // }
-
   render() {
+    let { minutes, seconds} = this.state
     return (
       <div>
+        <h2>{this.props.minutes}:{ this.props.seconds < 10 ? `0${ this.props.seconds }` : this.props.seconds }</h2>
         <h2>{this.props.time}.</h2>
       </div>
     );

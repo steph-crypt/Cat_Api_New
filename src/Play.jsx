@@ -1,6 +1,4 @@
 import React from "react";
-// import Timer from "./Timer";
-//PlayRoot = document.querySelector("button");
 
 class Play extends React.Component {
   constructor(props) {
@@ -8,10 +6,10 @@ class Play extends React.Component {
     this.state = {isPlayOn: true};
 
     // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
+    this.handlePlayClick = this.handlePlayClick.bind(this);
   }
 
-  handleClick() {
+  handlePlayClick() {
     this.setState(state => ({
       isPlayOn: !state.isPlayOn
     }));
@@ -20,9 +18,7 @@ class Play extends React.Component {
 
   render() {
     return (
-      <button onClick={this.handleClick}>
-        {this.state.isPlayOn ? 'Play' : 'Play Again'}
-      </button>
+      <button onClick={this.handlePlayClick}>Play</button>
     );
   }
 }
