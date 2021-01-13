@@ -14,16 +14,34 @@ class App extends Component {
         time: 60,
         cats: [],
         like: false,
+        likeArray: [],
         dislike: false,
+        dislikeArray: [],
         skip: false,
-        isLoaded: false,
+        skipArray: [],
         index: 0
       };
+
   }
 
   handlePlay = () => {
    this.setState({time: this.state.time -1});
   };
+
+  handleCats = (e) => {
+  e.preventDefault();
+  this.setState({index: 0, cats: []});
+    let cats = this.props.cats;
+    let totalCats = cats.length;
+    let index = 0;
+      if (index >= totalCats) {
+        index = 0;
+      } else {
+        index += 1;
+      // }
+        console.log(cats[index]);
+      }
+    };
 
   componentDidMount = () => {
     fetch("https://api.thecatapi.com/v1/breeds")
@@ -51,8 +69,8 @@ class App extends Component {
               <Like
                 cats={this.state.cats}
                 cat={this.state.cats[this.state.index]}
-                handleCat={this.handleCat}
-                index={[this.state.index]}/>
+                handleCat={this.state.handleCats}
+                index={0}/>
               <Dislike />
               <Skip />
           </div>
@@ -63,7 +81,6 @@ class App extends Component {
         )
       }
 };
-
 ReactDOM.render(<App />, document.getElementById("root"));
 
 
