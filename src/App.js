@@ -108,18 +108,21 @@ class App extends Component {
                 }
           </div>
           <div className="right-column">
-            {this.state.cats.length
-              ? <Cat cat={this.state.cats[this.state.index]}
-                    key={this.state.cats.id} />
-              : null
-            }
-            <Like
+            <div className="right-components">
+              {this.state.cats.length
+                ? <Cat
+                      cat={this.state.cats[this.state.index]}
+                      key={this.state.cats.id} />
+                : null
+              }
+              <Like
                 cats={this.state.cats}
                 cat={this.state.cats[this.state.index]}
                 handleCat={this.handleCats}
                 index={0}/>
               <Dislike />
               <Skip />
+            </div>
           </div>
         </div>
         )
