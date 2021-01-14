@@ -1,3 +1,18 @@
+  handleCats = () => {
+    this.setState({cats: [], index: this.state.index})
+      let {cats, index} = this.state
+      let totalCats = this.state.cats.length
+        if (index < totalCats) {
+          this.setState(({index} => (
+            index += 1
+        } else {
+            index = 0
+        })))
+          console.log(cats[index].image.url, cats[index].name)
+    //onClick Cats array gets shuffled through
+  };
+
+
   <div className="stats">
             <h1>Likes:`${this.likeArray.length}`</h1>
           </div>

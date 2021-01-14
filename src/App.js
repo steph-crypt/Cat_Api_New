@@ -23,21 +23,11 @@ class App extends Component {
         skipArray: [],
         index: 0
       };
-
   }
 
   handleCats = () => {
-    this.setState({cats: [], index: this.state.index += 1})
-      let {cats, index} = this.state
-      let totalCats = this.state.cats.length
-        if (index <= totalCats - 1) {
-          this.setState(({index} => (
-            index += 1
-        } else {
-            index = 0
-        })))
-          return (cats[index])
-    //onClick Cats array gets shuffled through
+    this.setState({index: +cats[index]})
+    console.log(cats[index].image.url, cats[index].name)
   };
 
   sortCats = () => {
@@ -53,6 +43,10 @@ class App extends Component {
   };
 
   setTimer = () => {
+    this.setState({
+      seconds: this.state.seconds,
+      minutes: this.state.minutes
+    });
   this.gameInterval = setInterval(() => {
     let {minutes, seconds} = this.state
 
@@ -60,7 +54,7 @@ class App extends Component {
         this.setState(({seconds}) => ({
           seconds: seconds - 1
         })
-     ) }
+     )}
 
       if (seconds === 0 && minutes === 0) {
           clearInterval(this.gameInterval);
@@ -81,9 +75,6 @@ class App extends Component {
         (result)=> {
         this.setState({
           cats: result
-          like: true,
-          dislike: true,
-          skip: true
          });
       },
     )
@@ -95,29 +86,23 @@ class App extends Component {
           <div className="left-column">
             <h1 id="header">Kitty Tinder</h1>
               <Play handlePlay={this.handlePlay}/>
-                { minutes === 0 && seconds === 0
+                { this.state.minutes === 0 && this.state.seconds === 0
                   ? <div className="time-scores">
                       <h1>Total Cats Seen:{this.state.cats.length}</h1>
                       <h2>Likes:{this.state.likeArray.length}</h2>
                       <h2>Dislikes:{this.state.dislikeArray.length}</h2>
                       <h2>Skips:{this.state.skipArray.length}</h2>
                     </div>
-                  : <div classname="timer">
+                  : <div className="timer">
                       <h2>
                         <Timer
                          time={this.state.time}
+                         setTime={this.setTime}
                          countDown={this.state.seconds < 10 ? `0${ this.state.seconds }` : this.state.seconds }
                         />
                        </h2>
                     </div>
                 }
-              <Like
-                cats={this.state.cats}
-                cat={this.state.cats[this.state.index]}
-                handleCat={this.handleCats}
-                index={0}/>
-              <Dislike />
-              <Skip />
           </div>
           <div className="right-column">
             {this.state.cats.length
@@ -125,6 +110,13 @@ class App extends Component {
                     key={this.state.cats.id} />
               : null
             }
+            <Like
+                cats={this.state.cats}
+                cat={this.state.cats[this.state.index]}
+                handleCat={this.handleCats}
+                index={0}/>
+              <Dislike />
+              <Skip />
           </div>
         </div>
         )
