@@ -12,6 +12,33 @@ let { totalCats } = this.state.cats.length;
       index++;
     }
 
+    setTimer() {
+    console.log("hi!")
+  this.gameInterval = setInterval(() => {
+    const {minutes, seconds} this.state
+
+      if (seconds > 0) {
+        this.setState({seconds}) => ({
+          seconds: seconds - 1
+        })
+      }
+
+      if (seconds === 0 && minutes === 0) {
+          clearInterval(this.gameInterval);
+        } else {
+          this.setState({minutes}) => ({
+            minutes: minutes - 1;
+            seconds: 59
+          }))
+        }
+      }
+    }, 1000)
+
+    { minutes === 0 && seconds === 0 ? <h1}
+
+    }
+
+
 this.setState({cats: this.state.cat[this.state.index] + 1});
 
 <h1>{this.props.cat.message ? this.props.cat.message : "None"}</h1>
@@ -41,5 +68,5 @@ function CatDetails() {
     handlePlay = () => {
    this.setState({time: this.state.time -1});
   }
-
+       {this.state.isPlayOn ? 'Play' : 'Play Again'}
 
