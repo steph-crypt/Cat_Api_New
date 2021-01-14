@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faForward, faHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
+library.add(faForward, faHeart, faTimes)
 import ReactDOM from "react-dom";
 import Play from "./Play";
 import Cat from "./Cat";

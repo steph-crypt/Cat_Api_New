@@ -1,4 +1,5 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Skip extends React.Component {
   constructor(props) {
@@ -7,7 +8,9 @@ class Skip extends React.Component {
       render() {
       return(
         <div className="buttons">
-          <button id="skip" onClick={this.handleCats}>Skip</button>
+          <button id="skip" onClick={this.handleCats}>
+            <FontAwesomeIcon icon="forward" />
+          </button>
         </div>
     );
   }

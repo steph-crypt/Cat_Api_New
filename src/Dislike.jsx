@@ -1,4 +1,5 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Dislike extends React.Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class Dislike extends React.Component {
         // this.props.handleGame();
       return(
          <div className="buttons">
-          <button id="dislike" onClick={this.handleCats}>Dislike</button>
+          <button id="dislike" onClick={this.handleCats}>
+            <FontAwesomeIcon icon="times" />
+          </button>
         </div>
     );
   }
