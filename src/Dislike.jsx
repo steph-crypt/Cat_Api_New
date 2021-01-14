@@ -7,7 +7,9 @@ class Dislike extends React.Component {
       render() {
         // this.props.handleGame();
       return(
-        <button>Dislike</button>
+         <div className="buttons">
+          <button id="dislike" onClick={this.handleCats}>Dislike</button>
+        </div>
     );
   }
 }
