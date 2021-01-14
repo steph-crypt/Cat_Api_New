@@ -10,7 +10,7 @@ class Timer extends React.Component {
       minutes: 1,
       seconds: 0
     }
-    this.setTimer = this.setTimer.bind(this);
+    // this.setTimer = this.setTimer.bind(this);
   }
 
   render() {

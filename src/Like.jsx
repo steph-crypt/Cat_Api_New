@@ -1,4 +1,5 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Like extends React.Component {
   constructor(props) {
@@ -35,13 +36,12 @@ class Like extends React.Component {
 
       render() {
         const { cats, cat, index, like, likeArray } = this.state;
-      return(
-        <div>
+        return(
           <div className="buttons">
-            <button id="like" onClick={this.handleCatsClick}>Like</button>
+            <button id="like" onClick={this.handleCatsClick}>
+              <FontAwesomeIcon icon="heart" />
+            </button>
           </div>
-
-        </div>
     );
   }
 }
