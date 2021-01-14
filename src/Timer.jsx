@@ -10,14 +10,13 @@ class Timer extends React.Component {
       minutes: 1,
       seconds: 0
     }
-    // this.setTimer = this.setTimer.bind(this);
   }
 
   render() {
-    let { minutes, seconds} = this.state
+    let { minutes, seconds} = this.props
     return (
       <div>
-        <h2>{this.props.minutes}:{ this.props.seconds < 10 ? `0${ this.props.seconds }` : this.props.seconds }</h2>
+        <h2>{this.props.minutes}:{ this.props.seconds < 10 ? `0${ this.props.seconds }` : this.props.seconds}</h2>
         <h2>{this.props.time}.</h2>
       </div>
     );

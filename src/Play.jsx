@@ -4,7 +4,6 @@ class Play extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isPlayOn: true};
-
     // This binding is necessary to make `this` work in the callback
     this.handlePlayClick = this.handlePlayClick.bind(this);
   }
@@ -18,7 +17,7 @@ class Play extends React.Component {
 
   render() {
     return (
-      <button onClick={this.handlePlayClick}>Play</button>
+      <button id="play-button" onClick={this.handlePlayClick}>Play</button>
     );
   }
 }

@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class Like extends React.Component {
   constructor(props) {
     super(props);
-    this.handleCatsClick = this.handleCatsClick.bind(this);
-    this.state = { cats: [], index: 0 };
+    this.state = {cats: []}
   }
 
  handleCatsClick = (e) => {
