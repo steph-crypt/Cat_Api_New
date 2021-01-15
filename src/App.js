@@ -86,7 +86,7 @@ class App extends Component {
   render() {
       return (
         <div className="container">
-          <div className="left-column">
+          <div className="container-left">
             <h1 id="header">Kitty Tinder</h1>
               <Play handlePlay={this.handlePlay}/>
                 { this.state.minutes === 0 && this.state.seconds === 0
@@ -107,21 +107,27 @@ class App extends Component {
                     </div>
                 }
           </div>
-          <div className="right-column">
+          <div className="container-right">
             <div className="right-components">
               {this.state.cats.length
                 ? <Cat
                       cat={this.state.cats[this.state.index]}
-                      key={this.state.cats.id} />
+                      key={this.state.cats.id}
+                  />
                 : null
               }
-              <Like
-                cats={this.state.cats}
-                cat={this.state.cats[this.state.index]}
-                handleCat={this.handleCats}
-                index={0}/>
-              <Dislike />
-              <Skip />
+              <div className="button-parent">
+                <div className="like-buttons">
+                  <Like
+                    cats={this.state.cats}
+                    cat={this.state.cats[this.state.index]}
+                    handleCat={this.handleCats}
+                    index={0}
+                  />
+                  <Dislike />
+                  <Skip />
+                </div>
+              </div>
             </div>
           </div>
         </div>

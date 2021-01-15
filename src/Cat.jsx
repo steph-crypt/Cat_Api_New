@@ -9,9 +9,12 @@ class Cat extends Component {
           return (
             <div className="card">
               <img src={cat.image.url} alt="cat img" />
-              <h1>{cat.name}</h1>
-              <p>{cat.temperament}</p>
+              <div className="cat-info">
+                <h1>{cat.name}</h1>
+                <p>{cat.temperament}</p>
+              </div>
             </div>
+
           )
     }
 }
