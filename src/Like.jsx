@@ -5,13 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class Like extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {cats: []}
+    this.state = {cats: [], index: 0 }
 
-    this.handleCats = this.handleCats.bind(this)
+    this.handleCatsClick = this.handleCatsClick.bind(this)
   }
 
- handleCats = (e) => {
-  console.log("click happened");
+ handleCatsClick() {
+  console.log("meow")
+  this.props.handleCats();
 }
 
 
@@ -30,10 +31,10 @@ class Like extends React.Component {
   // }
 
       render() {
-        const { cats, cat, index, like, likeArray } = this.state;
+        const { cats, cat, index } = this.state;
         return(
           <div className="buttons">
-            <button id="like" onClick={this.handleCats}>
+            <button id="like" onClick={this.handleCatsClick}>
               <FontAwesomeIcon icon="heart" />
             </button>
           </div>

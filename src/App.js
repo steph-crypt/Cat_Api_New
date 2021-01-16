@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
       this.state = {
         minutes: 1,
-        seconds: 59,
+        seconds: 0,
         time: 60,
         cats: [],
         like: false,
@@ -28,11 +28,6 @@ class App extends Component {
       };
   }
 
-  handleCats = () => {
-    this.setState({index: +cats[index]});
-    console.log("hello from parent")
-  };
-
   handlePlay = () => {
    this.setState({
       time: this.state.time -1,
@@ -42,7 +37,7 @@ class App extends Component {
   };
 
   setTimer = () => {
-    this.myInterval = setInterval(() => {
+    this.timerInterval = setInterval(() => {
     const { seconds, minutes } = this.state
     if (seconds > 0) {
       this.setState(({ seconds }) => ({
@@ -51,7 +46,7 @@ class App extends Component {
     }
     if (seconds === 0) {
       if (minutes === 0) {
-        clearInterval(this.myInterval)
+        clearInterval(this.timerInterval)
       } else {
         this.setState(({ minutes }) => ({
           minutes: minutes - 1,
@@ -60,85 +55,8 @@ class App extends Component {
       }
     }
   }, 1000)
-    // console.log('timer going')
 }
 
-  //   setTimer = () => {
-  //   this.setState({
-  //     seconds: this.state.seconds,
-  //     minutes: this.state.minutes
-  //   });
-  // this.gameInterval = setInterval(() => {
-  //   let {minutes, seconds} = this.state
-
-  //     if (seconds > 0) {
-  //       this.setState(({seconds}) => ({
-  //         seconds: seconds - 1
-  //       })
-  //    )}
-
-  //     if (seconds === 0 && minutes === 0) {
-  //         clearInterval(this.gameInterval);
-  //       } else {
-  //         this.setState(({minutes}) => ({
-  //           minutes: minutes - 1,
-  //           seconds: 59
-  //         }))
-  //       }
-  //   }, 1000)
-  // };
-
-//   setTimer = () => {
-//     this.setState({
-//       seconds: this.state.seconds;
-//       minutes: this.state.minutes;
-//     })
-//       this.timer = setInterval(() => {
-//         document.getElementById('safeTimerDisplay').innerHTML= minutes + ":" +seconds;
-//         let {seconds - 1, minutes - 1} = this.state
-
-//         if (minutes < 1) {
-//           this.setState(({minutes}) => ({
-//             minutes: minutes = 0 + "0"
-//           } else {
-//             minutes: minutes -= 1
-//           }
-//           })
-
-//         { seconds > 0 ? seconds -= 1 : seconds }
-//         { seconds < 10 && seconds > 0 ? seconds = "0" + seconds : seconds }
-//         if ( minutes === 0 && seconds === -1) {
-//           clearInterval(timer);
-//           sortLikes();
-//           sortDislikes();
-//           sortSkips();
-//           //render Play Again Button
-//           //remove timer markup
-//         }
-//     }, 1000);
-// }
-
-// function setTimer(){
-//     var seconds = 59;
-//     var minutes = 1;
-//     var timer = setInterval(function(){
-//         document.getElementById('safeTimerDisplay').innerHTML= minutes + ":" +seconds;
-//         seconds - 1;
-//         minutes - 1;
-
-//         { minutes < 1 ? minutes = 0 + "0" : minutes -= 1 }
-//         { seconds > 0 ? seconds -= 1 : seconds }
-//         { seconds < 10 && seconds > 0 ? seconds = "0" + seconds : seconds }
-//         if ( minutes === 0 && seconds === -1) {
-//           clearInterval(timer);
-//           sortLikes();
-//           sortDislikes();
-//           sortSkips();
-//           //render Play Again Button
-//           //remove timer markup
-//         }
-//     }, 1000);
-// }
 
   componentDidMount = () => {
     fetch("https://api.thecatapi.com/v1/breeds")
@@ -150,6 +68,13 @@ class App extends Component {
          });
       },
     )
+  };
+
+  handleCats = () => {
+    this.setState({
+      cats: result,
+      index: +cats[index]
+    });
   };
 
   render() {
@@ -184,12 +109,14 @@ class App extends Component {
                 <div className="like-buttons">
                   <Like
                     cats={this.state.cats}
-                    cat={this.state.cats[this.state.index]}
+                    index={this.state.cats[this.state.index]}
                     handleCats={this.handleCats}
                     index={0}
                   />
-                  <Dislike />
-                  <Skip />
+                  <Dislike
+                    handleCats={this.handleCats} />
+                  <Skip
+                    handleCats={this.handleCats} />
                 </div>
               </div>
             </div>
@@ -198,6 +125,7 @@ class App extends Component {
         )
       }
 };
+
 ReactDOM.render(<App />, document.getElementById("root"));
 
 
