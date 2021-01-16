@@ -65,7 +65,7 @@ class App extends Component {
     this.setState({
       index: this.state.index,
       cats: this.state.cats,
-      likeArray: this.state.likeArray.push(this.state.cats[this.state.index])
+      likeArray: this.state.likeArray.concat(this.state.cats[this.state.index])
     });
    // console.log(`Likes: ${likeArray.length}`);
     console.log(this.state.likeArray.length)
@@ -74,7 +74,7 @@ class App extends Component {
   sortDislikes = () => {
     this.setState({
       cats: this.state.cats,
-      dislikeArray: this.state.dislikeArray
+      dislikeArray: this.state.dislikeArray.concat(this.state.cats[this.state.index])
     });
     console.log(this.state.dislikeArray.length)
   }
@@ -82,7 +82,7 @@ class App extends Component {
   sortSkips = () => {
     this.setState({
       cats: this.state.cats,
-      skipArray: this.state.skipArray
+      skipArray: this.state.skipArray.concat(this.state.cats[this.state.index])
     });
       console.log(this.state.skipArray.length)
   }
@@ -113,6 +113,10 @@ class App extends Component {
                    time={this.state.time}
                    minutes={this.state.minutes}
                    seconds={this.state.seconds}
+                   cats={this.state.cats}
+                   likeArray={this.state.likeArray}
+                   dislikeArray={this.state.dislikeArray}
+                   skipArray={this.state.skipArray}
                   />
                  </h2>
               </div>

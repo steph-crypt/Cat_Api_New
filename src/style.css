@@ -41,15 +41,15 @@ body {
 
 #play-button {
   display: flex;
-  height: 59px;
-  width: 148px;
-  background: #ff7854;
+  height: 70px;
+  width: 160px;
+  background: linear-gradient(45deg, #ff7854, #ed4c76);
   border-radius: 10px;
   color: white;
   font-size: 32px;
-  border: crimson;
+  border: 3px solid white;
   box-shadow: 1px 2px 6px grey;
-  margin: 90px 40px;
+  margin: 50px 40px;
   justify-content: center;
   align-items: center;
   font-family: Roboto;
@@ -64,8 +64,28 @@ body {
 #timer {
   font-size: 55px;
   font-family: Roboto;
-  color: #5f9fff;
+  color: #ed4b72;
+  text-shadow: 1px 1px 3px grey;
 }
+
+.like-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+  font-family: Roboto;
+  color: black;
+}
+
+/*.like-results h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.like-results p {
+  display: flex;
+  justify-content: center;
+}*/
 
 .container-right {
   display: flex;
@@ -132,7 +152,7 @@ body {
   background: white;
   font-size: 33px;
   color: #f6686e;
-  border: 1px solid #fff;
+  border: 2px solid #fbc9d5ed;
   box-shadow: 0px 1px 8px 0px #cecece;
   margin: 10px;
 }
@@ -149,7 +169,7 @@ body {
   background: white;
   font-size: 33px;
   color: #5d86fb;
-  border: 1px solid #fff;
+  border: 2px solid #fbc9d5ed;
   box-shadow: 0px 1px 8px 0px #cecece;
   margin: 10px;
 }
@@ -166,7 +186,7 @@ body {
   background: white;
   font-size: 33px;
   color: #8dff92;
-  border: 1px solid #fff;
+  border: 2px solid #fbc9d5ed;
   box-shadow: 0px 1px 8px 0px #cecece;
   margin: 10px;
 }

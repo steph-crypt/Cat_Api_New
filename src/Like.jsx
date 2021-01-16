@@ -12,7 +12,7 @@ class Like extends React.Component {
   this.props.handleCats();
   this.props.sortLikes();
 }
-  // let newLikeArray = likeArray.push(this.cat[index]);
+
   render() {
     const { cats, cat, index, likeArray } = this.props;
     return(
