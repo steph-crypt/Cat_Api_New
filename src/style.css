@@ -17,7 +17,6 @@ body {
   flex-direction: column;
   align-items: center;
   flex: 2;
-  border-right: 1.5px solid #e4e4e4;
   height: 100vh;
   background: #fff;
   max-width: 375px
@@ -67,6 +66,28 @@ body {
   color: #ff0073;
 }
 
+#play-again {
+  display: flex;
+  height: 70px;
+  width: 215px;
+  background: linear-gradient(45deg, #ff7854, #ed4c76);
+  border-radius: 10px;
+  color: white;
+  font-size: 32px;
+  border: 3px solid white;
+  box-shadow: 1px 2px 6px grey;
+/*  margin: 50px 40px;*/
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto;
+}
+
+#play-again:hover {
+  background: #fff;
+  border: 3px solid #ff0073;
+  color: #ff0073;
+}
+
 #timer {
   font-size: 55px;
   font-family: Roboto;
@@ -103,6 +124,8 @@ body {
   flex-direction: row;
   justify-content: center;
   height: 100vh;
+  background: #ec4c78;
+  border-left: 2px solid #b50143;
 }
 
 .right-components {
@@ -116,7 +139,8 @@ body {
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin: 20px 40px;
+  margin-top: 50px ;
+  margin-bottom: 25px;
 }
 
 .card > img {

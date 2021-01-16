@@ -3,6 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faForward, faHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
 import ReactDOM from "react-dom";
 import Play from "./Play";
+import PlayAgain from "./PlayAgain";
 import Cat from "./Cat";
 import Timer from "./Timer";
 import Like from "./Like";
@@ -27,7 +28,6 @@ class App extends Component {
 
   handlePlay = () => {
    this.setState({
-      time: this.state.time -1,
       seconds: this.state.seconds,
       minutes: this.state.minutes
     });
@@ -60,6 +60,7 @@ class App extends Component {
       cat: this.state.cats[this.state.index],
       index: this.state.index += 1
     });
+    console.log(this.state.cats)
   };
 
   sortLikes = () => {
@@ -101,8 +102,13 @@ class App extends Component {
         <div className="container">
           <div className="container-left">
             <h1 id="header">Kitty Tinder</h1>
-              <Play handlePlay={this.handlePlay}
-                    setTimer={this.setTimer}
+              <Play
+                handlePlay={this.handlePlay}
+                setTimer={this.setTimer}
+              />
+              <PlayAgain
+                handlePlay={this.handlePlay}
+                setTimer={this.setTimer}
               />
                <div className="timer">
                 <h2>
