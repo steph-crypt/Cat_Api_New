@@ -6,7 +6,7 @@ class Cat extends Component {
   }
 
     render() {
-      var { cat } = this.props;
+      var { cats, cat } = this.props;
           return (
             <div className="card">
               <img src={cat.image.url} alt="cat img" />

@@ -11,7 +11,9 @@ class Like extends React.Component {
   }
 
  handleCatsClick() {
-  console.log("meow")
+  // this.setState(state => ({
+  //   //   isPlayOn: !state.isPlayOn
+  //   // }));
   this.props.handleCats();
 }
 

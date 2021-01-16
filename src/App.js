@@ -39,24 +39,32 @@ class App extends Component {
   setTimer = () => {
     this.timerInterval = setInterval(() => {
     const { seconds, minutes } = this.state
-    if (seconds > 0) {
-      this.setState(({ seconds }) => ({
-        seconds: seconds - 1
-      }))
-    }
-    if (seconds === 0) {
-      if (minutes === 0) {
-        clearInterval(this.timerInterval)
-      } else {
-        this.setState(({ minutes }) => ({
-          minutes: minutes - 1,
-          seconds: 59
+      if (seconds > 0) {
+        this.setState(({ seconds }) => ({
+          seconds: seconds - 1
         }))
       }
-    }
-  }, 1000)
-}
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(this.timerInterval)
+        } else {
+          this.setState(({ minutes }) => ({
+            minutes: minutes - 1,
+            seconds: 59
+          }))
+        }
+      }
+    }, 1000)
+  };
 
+  handleCats = () => {
+    this.setState({
+      cats: this.state.cats,
+      cat: this.state.cats[this.state.index],
+      index: this.state.index += 1
+    });
+    console.log("meow")
+  };
 
   componentDidMount = () => {
     fetch("https://api.thecatapi.com/v1/breeds")
@@ -68,13 +76,6 @@ class App extends Component {
          });
       },
     )
-  };
-
-  handleCats = () => {
-    this.setState({
-      cats: result,
-      index: +cats[index]
-    });
   };
 
   render() {
