@@ -4,17 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class Skip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {cats: [], index: 0 }
+    this.state = {cats: [], index: 0, skipArray: [] }
     this.handleCatsClick = this.handleCatsClick.bind(this)
   }
 
   handleCatsClick() {
-    console.log("skip")
     this.props.handleCats()
+    this.props.sortSkips();
   }
 
       render() {
-        const { cats, cat, index } = this.state;
+        const { cats, cat, index, skipArray} = this.props;
       return(
         <div className="buttons">
           <button id="skip" onClick={this.handleCatsClick}>
