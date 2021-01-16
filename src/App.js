@@ -3,11 +3,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faForward, faHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
 import ReactDOM from "react-dom";
 import Play from "./Play";
+import PlayAgain from "./PlayAgain";
 import Cat from "./Cat";
 import Timer from "./Timer";
 import Like from "./Like";
 import Dislike from "./Dislike";
 import Skip from "./Skip";
+import Results from "./Results";
 library.add(faForward, faHeart, faTimes)
 
 class App extends Component {
@@ -26,7 +28,6 @@ class App extends Component {
 
   handlePlay = () => {
    this.setState({
-      time: this.state.time -1,
       seconds: this.state.seconds,
       minutes: this.state.minutes
     });
@@ -59,32 +60,29 @@ class App extends Component {
       cat: this.state.cats[this.state.index],
       index: this.state.index += 1
     });
+    console.log(this.state.cats)
   };
 
   sortLikes = () => {
     this.setState({
       index: this.state.index,
       cats: this.state.cats,
-      likeArray: this.state.likeArray.push(this.state.cats[this.state.index])
+      likeArray: this.state.likeArray.concat(this.state.cats[this.state.index])
     });
-   // console.log(`Likes: ${likeArray.length}`);
-    console.log(this.state.likeArray.length)
   }
 
   sortDislikes = () => {
     this.setState({
       cats: this.state.cats,
-      dislikeArray: this.state.dislikeArray
+      dislikeArray: this.state.dislikeArray.concat(this.state.cats[this.state.index])
     });
-    console.log(this.state.dislikeArray.length)
   }
 
   sortSkips = () => {
     this.setState({
       cats: this.state.cats,
-      skipArray: this.state.skipArray
+      skipArray: this.state.skipArray.concat(this.state.cats[this.state.index])
     });
-      console.log(this.state.skipArray.length)
   }
 
   componentDidMount = () => {
@@ -104,8 +102,13 @@ class App extends Component {
         <div className="container">
           <div className="container-left">
             <h1 id="header">Kitty Tinder</h1>
-              <Play handlePlay={this.handlePlay}
-                    setTimer={this.setTimer}
+              <Play
+                handlePlay={this.handlePlay}
+                setTimer={this.setTimer}
+              />
+              <PlayAgain
+                handlePlay={this.handlePlay}
+                setTimer={this.setTimer}
               />
                <div className="timer">
                 <h2>
@@ -113,9 +116,19 @@ class App extends Component {
                    time={this.state.time}
                    minutes={this.state.minutes}
                    seconds={this.state.seconds}
+                   cats={this.state.cats}
+                   likeArray={this.state.likeArray}
+                   dislikeArray={this.state.dislikeArray}
+                   skipArray={this.state.skipArray}
                   />
                  </h2>
               </div>
+              <Results
+                cats={this.state.cats}
+                likeArray={this.state.likeArray}
+                dislikeArray={this.state.dislikeArray}
+                skipArray={this.state.skipArray}
+                 />
           </div>
           <div className="container-right">
             <div className="right-components">
