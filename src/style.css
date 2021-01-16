@@ -26,13 +26,13 @@ body {
 #header {
   background: linear-gradient(262deg, #ff7854, #fd267d);
   display: flex;
-  min-width: 90%;
+  min-width: 100%;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: white;
-  height: 100px;
-  padding: 14px;
+  height: 75px;
+  padding: 30px 0px;
   font-size: 45px;
   font-family: Roboto;
   margin: 0;
@@ -43,7 +43,7 @@ body {
   display: flex;
   height: 59px;
   width: 148px;
-  background: #ff0073;
+  background: #ff7854;
   border-radius: 10px;
   color: white;
   font-size: 32px;
@@ -90,8 +90,8 @@ body {
 }
 
 .card > img {
-  height: 500px;
-  width: 500px;
+  height: 450px;
+  width: 450px;
   box-shadow: 0px 19px 53px 0px rgba(0, 0, 0, 0.4);
   background: pink;
   border-radius: 10px;
@@ -102,10 +102,21 @@ body {
   font-family: Roboto;
   position: absolute;
   bottom: 0px;
-  width: 95%;
+  width: 100%;
   border-radius: 0 0 10px 10px;
-  padding: 10px;
-  background: linear-gradient(#04040400, #000000);
+  background: linear-gradient(180deg, #00000000, #000000);
+  text-shadow: 1px 1px 2px black;
+}
+
+.cat-info h1 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.cat-info p {
+  padding-bottom: 10px;
+  padding-left: 10px;
 }
 
 .like-buttons {
