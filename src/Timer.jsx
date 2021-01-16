@@ -23,11 +23,5 @@ class Timer extends React.Component {
   }
 }
 
-// will refer to button component
-//const Timer function()
-//<PlayAgain />
-// setInterval()
-// clearInterval()
-
 export default Timer;
 
