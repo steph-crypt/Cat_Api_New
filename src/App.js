@@ -8,6 +8,7 @@ import Timer from "./Timer";
 import Like from "./Like";
 import Dislike from "./Dislike";
 import Skip from "./Skip";
+import Results from "./Results";
 library.add(faForward, faHeart, faTimes)
 
 class App extends Component {
@@ -67,8 +68,6 @@ class App extends Component {
       cats: this.state.cats,
       likeArray: this.state.likeArray.concat(this.state.cats[this.state.index])
     });
-   // console.log(`Likes: ${likeArray.length}`);
-    console.log(this.state.likeArray.length)
   }
 
   sortDislikes = () => {
@@ -76,7 +75,6 @@ class App extends Component {
       cats: this.state.cats,
       dislikeArray: this.state.dislikeArray.concat(this.state.cats[this.state.index])
     });
-    console.log(this.state.dislikeArray.length)
   }
 
   sortSkips = () => {
@@ -84,7 +82,6 @@ class App extends Component {
       cats: this.state.cats,
       skipArray: this.state.skipArray.concat(this.state.cats[this.state.index])
     });
-      console.log(this.state.skipArray.length)
   }
 
   componentDidMount = () => {
@@ -120,6 +117,12 @@ class App extends Component {
                   />
                  </h2>
               </div>
+              <Results
+                cats={this.state.cats}
+                likeArray={this.state.likeArray}
+                dislikeArray={this.state.dislikeArray}
+                skipArray={this.state.skipArray}
+                 />
           </div>
           <div className="container-right">
             <div className="right-components">
