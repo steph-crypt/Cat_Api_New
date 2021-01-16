@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faForward, faHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
-library.add(faForward, faHeart, faTimes)
 import ReactDOM from "react-dom";
 import Play from "./Play";
 import Cat from "./Cat";
@@ -9,6 +8,7 @@ import Timer from "./Timer";
 import Like from "./Like";
 import Dislike from "./Dislike";
 import Skip from "./Skip";
+library.add(faForward, faHeart, faTimes)
 
 class App extends Component {
   constructor(props) {
@@ -16,15 +16,11 @@ class App extends Component {
       this.state = {
         minutes: 1,
         seconds: 0,
-        time: 60,
         cats: [],
-        like: false,
+        index: 0,
         likeArray: [],
-        dislike: false,
         dislikeArray: [],
-        skip: false,
         skipArray: [],
-        index: 0
       };
   }
 
@@ -63,8 +59,33 @@ class App extends Component {
       cat: this.state.cats[this.state.index],
       index: this.state.index += 1
     });
-    console.log("meow")
   };
+
+  sortLikes = () => {
+    this.setState({
+      index: this.state.index,
+      cats: this.state.cats,
+      likeArray: this.state.likeArray.push(this.state.cats[this.state.index])
+    });
+   // console.log(`Likes: ${likeArray.length}`);
+    console.log(this.state.likeArray.length)
+  }
+
+  sortDislikes = () => {
+    this.setState({
+      cats: this.state.cats,
+      dislikeArray: this.state.dislikeArray
+    });
+    console.log(this.state.dislikeArray.length)
+  }
+
+  sortSkips = () => {
+    this.setState({
+      cats: this.state.cats,
+      skipArray: this.state.skipArray
+    });
+      console.log(this.state.skipArray.length)
+  }
 
   componentDidMount = () => {
     fetch("https://api.thecatapi.com/v1/breeds")
@@ -86,16 +107,15 @@ class App extends Component {
               <Play handlePlay={this.handlePlay}
                     setTimer={this.setTimer}
               />
-                     <div className="timer">
-                      <h2>
-                        <Timer
-                         time={this.state.time}
-                         minutes={this.state.minutes}
-                         seconds={this.state.seconds}
-                        />
-                       </h2>
-                    </div>
-                }
+               <div className="timer">
+                <h2>
+                  <Timer
+                   time={this.state.time}
+                   minutes={this.state.minutes}
+                   seconds={this.state.seconds}
+                  />
+                 </h2>
+              </div>
           </div>
           <div className="container-right">
             <div className="right-components">
@@ -111,13 +131,24 @@ class App extends Component {
                   <Like
                     cats={this.state.cats}
                     index={this.state.cats[this.state.index]}
+                    likeArray={this.state.likeArray}
                     handleCats={this.handleCats}
-                    index={0}
+                    sortLikes={this.sortLikes}
                   />
                   <Dislike
-                    handleCats={this.handleCats} />
+                    cats={this.state.cats}
+                    index={this.state.cats[this.state.index]}
+                    dislikeArray={this.state.dislikeArray}
+                    handleCats={this.handleCats}
+                    sortDislikes={this.sortDislikes}
+                  />
                   <Skip
-                    handleCats={this.handleCats} />
+                    cats={this.state.cats}
+                    index={this.state.cats[this.state.index]}
+                    skipArray={this.state.skipArray}
+                    handleCats={this.handleCats}
+                    sortSkips={this.sortSkips}
+                  />
                 </div>
               </div>
             </div>

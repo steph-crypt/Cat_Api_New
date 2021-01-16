@@ -4,17 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class Dislike extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {cats: [], index: 0 }
+    this.state = {cats: [], index: 0, dislikeArray: []}
     this.handleCatsClick = this.handleCatsClick.bind(this)
   }
 
   handleCatsClick() {
-    console.log("dislike")
     this.props.handleCats()
+    this.props.sortDislikes();
   }
 
       render() {
-        const { cats, cat, index } = this.state;
+        const { cats, cat, index, dislikeArray } = this.props;
       return(
          <div className="buttons">
           <button id="dislike" onClick={this.handleCatsClick}>
