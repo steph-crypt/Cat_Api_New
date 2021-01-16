@@ -13,6 +13,7 @@ class Play extends React.Component {
       isPlayOn: !state.isPlayOn
     }));
     this.props.handlePlay()
+    this.props.setTimer()
   }
 
   render() {

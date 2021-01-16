@@ -1,3 +1,11 @@
+{ this.state.minutes === 0 && this.state.seconds === 0
+                  ? <div className="time-scores">
+                      <h1>Total Cats Seen:{this.state.cats.length}</h1>
+                      <h2>Likes:{this.state.likeArray.length}</h2>
+                      <h2>Dislikes:{this.state.dislikeArray.length}</h2>
+                      <h2>Skips:{this.state.skipArray.length}</h2>
+                    </div>
+
   handleCats = () => {
     this.setState({cats: [], index: this.state.index})
       let {cats, index} = this.state

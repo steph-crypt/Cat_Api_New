@@ -15,7 +15,7 @@ class App extends Component {
     super(props);
       this.state = {
         minutes: 1,
-        seconds: 0,
+        seconds: 59,
         time: 60,
         cats: [],
         like: false,
@@ -29,13 +29,9 @@ class App extends Component {
   }
 
   handleCats = () => {
-    this.setState({index: +cats[index]})
-    console.log(cats[index].image.url, cats[index].name)
+    this.setState({index: +cats[index]});
+    console.log("hello from parent")
   };
-
-  sortCats = () => {
-
-  }
 
   handlePlay = () => {
    this.setState({
@@ -46,30 +42,103 @@ class App extends Component {
   };
 
   setTimer = () => {
-    this.setState({
-      seconds: this.state.seconds,
-      minutes: this.state.minutes
-    });
-  this.gameInterval = setInterval(() => {
-    let {minutes, seconds} = this.state
+    this.myInterval = setInterval(() => {
+    const { seconds, minutes } = this.state
+    if (seconds > 0) {
+      this.setState(({ seconds }) => ({
+        seconds: seconds - 1
+      }))
+    }
+    if (seconds === 0) {
+      if (minutes === 0) {
+        clearInterval(this.myInterval)
+      } else {
+        this.setState(({ minutes }) => ({
+          minutes: minutes - 1,
+          seconds: 59
+        }))
+      }
+    }
+  }, 1000)
+    // console.log('timer going')
+}
 
-      if (seconds > 0) {
-        this.setState(({seconds}) => ({
-          seconds: seconds - 1
-        })
-     )}
+  //   setTimer = () => {
+  //   this.setState({
+  //     seconds: this.state.seconds,
+  //     minutes: this.state.minutes
+  //   });
+  // this.gameInterval = setInterval(() => {
+  //   let {minutes, seconds} = this.state
 
-      if (seconds === 0 && minutes === 0) {
-          clearInterval(this.gameInterval);
-        } else {
-          this.setState(({minutes}) => ({
-            minutes: minutes - 1,
-            seconds: 59
-          }))
-        }
-    }, 1000)
-  };
+  //     if (seconds > 0) {
+  //       this.setState(({seconds}) => ({
+  //         seconds: seconds - 1
+  //       })
+  //    )}
 
+  //     if (seconds === 0 && minutes === 0) {
+  //         clearInterval(this.gameInterval);
+  //       } else {
+  //         this.setState(({minutes}) => ({
+  //           minutes: minutes - 1,
+  //           seconds: 59
+  //         }))
+  //       }
+  //   }, 1000)
+  // };
+
+//   setTimer = () => {
+//     this.setState({
+//       seconds: this.state.seconds;
+//       minutes: this.state.minutes;
+//     })
+//       this.timer = setInterval(() => {
+//         document.getElementById('safeTimerDisplay').innerHTML= minutes + ":" +seconds;
+//         let {seconds - 1, minutes - 1} = this.state
+
+//         if (minutes < 1) {
+//           this.setState(({minutes}) => ({
+//             minutes: minutes = 0 + "0"
+//           } else {
+//             minutes: minutes -= 1
+//           }
+//           })
+
+//         { seconds > 0 ? seconds -= 1 : seconds }
+//         { seconds < 10 && seconds > 0 ? seconds = "0" + seconds : seconds }
+//         if ( minutes === 0 && seconds === -1) {
+//           clearInterval(timer);
+//           sortLikes();
+//           sortDislikes();
+//           sortSkips();
+//           //render Play Again Button
+//           //remove timer markup
+//         }
+//     }, 1000);
+// }
+
+// function setTimer(){
+//     var seconds = 59;
+//     var minutes = 1;
+//     var timer = setInterval(function(){
+//         document.getElementById('safeTimerDisplay').innerHTML= minutes + ":" +seconds;
+//         seconds - 1;
+//         minutes - 1;
+
+//         { minutes < 1 ? minutes = 0 + "0" : minutes -= 1 }
+//         { seconds > 0 ? seconds -= 1 : seconds }
+//         { seconds < 10 && seconds > 0 ? seconds = "0" + seconds : seconds }
+//         if ( minutes === 0 && seconds === -1) {
+//           clearInterval(timer);
+//           sortLikes();
+//           sortDislikes();
+//           sortSkips();
+//           //render Play Again Button
+//           //remove timer markup
+//         }
+//     }, 1000);
+// }
 
   componentDidMount = () => {
     fetch("https://api.thecatapi.com/v1/breeds")
@@ -88,20 +157,15 @@ class App extends Component {
         <div className="container">
           <div className="container-left">
             <h1 id="header">Kitty Tinder</h1>
-              <Play handlePlay={this.handlePlay}/>
-                { this.state.minutes === 0 && this.state.seconds === 0
-                  ? <div className="time-scores">
-                      <h1>Total Cats Seen:{this.state.cats.length}</h1>
-                      <h2>Likes:{this.state.likeArray.length}</h2>
-                      <h2>Dislikes:{this.state.dislikeArray.length}</h2>
-                      <h2>Skips:{this.state.skipArray.length}</h2>
-                    </div>
-                  : <div className="timer">
+              <Play handlePlay={this.handlePlay}
+                    setTimer={this.setTimer}
+              />
+                     <div className="timer">
                       <h2>
                         <Timer
                          time={this.state.time}
-                         setTime={this.setTime}
-                         countDown={this.state.seconds < 10 ? `0${ this.state.seconds }` : this.state.seconds }
+                         minutes={this.state.minutes}
+                         seconds={this.state.seconds}
                         />
                        </h2>
                     </div>
@@ -121,7 +185,7 @@ class App extends Component {
                   <Like
                     cats={this.state.cats}
                     cat={this.state.cats[this.state.index]}
-                    handleCat={this.handleCats}
+                    handleCats={this.handleCats}
                     index={0}
                   />
                   <Dislike />
