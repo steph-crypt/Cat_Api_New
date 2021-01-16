@@ -3,7 +3,7 @@
 }
 
 body {
- background: #f5f7fa;
+ background: #fff;
 }
 
 .container {
@@ -19,7 +19,7 @@ body {
   flex: 2;
   border-right: 1.5px solid #e4e4e4;
   height: 100vh;
-  background: #f5f7fa;
+  background: #fff;
   max-width: 375px
 }
 
@@ -37,6 +37,12 @@ body {
   font-family: Roboto;
   margin: 0;
   box-shadow: 0 4px 7px -3px grey;
+}
+
+.dynamic-components {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #play-button {
@@ -75,6 +81,10 @@ body {
   font-size: 20px;
   font-family: Roboto;
   color: black;
+}
+
+.like-results strong {
+  color: #ef6a57;
 }
 
 /*.like-results h1 {
@@ -143,22 +153,23 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 35px;
+
 }
 
 #like {
   border-radius: 50%;
   width: 70px;
   height: 70px;
-  background: white;
+  background: linear-gradient(#ff7854, #fd267d);
   font-size: 33px;
-  color: #f6686e;
+  color: #ff99db;
   border: 2px solid #fbc9d5ed;
   box-shadow: 0px 1px 8px 0px #cecece;
   margin: 10px;
 }
 
 #like:hover {
-  background: #ffe2e2;
+  background: #ffd7de;
   color: #f7010c;
 }
 
@@ -166,7 +177,7 @@ body {
   border-radius: 50%;
   width: 70px;
   height: 70px;
-  background: white;
+  background: linear-gradient(#ff7854, #fd267d);
   font-size: 33px;
   color: #5d86fb;
   border: 2px solid #fbc9d5ed;
@@ -183,9 +194,9 @@ body {
   border-radius: 50%;
   width: 70px;
   height: 70px;
-  background: white;
+  background: linear-gradient(#ff7854, #fd267d);
   font-size: 33px;
-  color: #8dff92;
+  color: #b8ffbb;
   border: 2px solid #fbc9d5ed;
   box-shadow: 0px 1px 8px 0px #cecece;
   margin: 10px;
