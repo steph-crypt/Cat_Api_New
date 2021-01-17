@@ -4,8 +4,8 @@ import { faForward, faHeart, faTimes } from '@fortawesome/free-solid-svg-icons'
 import ReactDOM from "react-dom";
 import Play from "./Play";
 import PlayAgain from "./PlayAgain";
-import Cat from "./Cat";
 import Timer from "./Timer";
+import Cat from "./Cat";
 import Like from "./Like";
 import Dislike from "./Dislike";
 import Skip from "./Skip";
@@ -23,6 +23,7 @@ class App extends Component {
         likeArray: [],
         dislikeArray: [],
         skipArray: [],
+        seenArray: [],
       };
   }
 
@@ -54,13 +55,13 @@ class App extends Component {
     }, 1000)
   };
 
-  // resetTimer = () => {
-  //   this.setState({
-  //     seconds: 0,
-  //     minutes: 1
-  //   })
-  //   console.log("reset")
-  // };
+  resetTimer = () => {
+    clearInterval(this.timerInterval)
+    this.setState({
+      minutes: 1
+    })
+    console.log(this.state.minutes)
+  };
 
   handleCats = () => {
     this.setState({
@@ -93,6 +94,13 @@ class App extends Component {
     });
   }
 
+  sortSeen = () => {
+    this.setState({
+      cats: this.state.cats,
+      seenArray: this.state.seenArray.concat(this.state.cats[this.state.index])
+    })
+  }
+
   componentDidMount = () => {
     fetch("https://api.thecatapi.com/v1/breeds")
       .then(res => res.json())
@@ -110,34 +118,44 @@ class App extends Component {
         <div className="container">
           <div className="container-left">
             <h1 id="header">Kitty Tinder</h1>
-            {this.state.minutes === 0 && this.state.seconds === 0
-             ? <PlayAgain
-                handlePlay={this.handlePlay}
-                setTimer={this.setTimer}
-                />
-             : <Play
-                handlePlay={this.handlePlay}
-                setTimer={this.setTimer}
-              />
-            }
+              <h3>You have 1 minute to choose your favorite and least favorite cats!</h3>
+              <div className="play">
+                {this.state.minutes === 0 && this.state.seconds === 0
+                 ? <PlayAgain
+                    handlePlay={this.handlePlay}
+                    setTimer={this.setTimer}
+                    resetTimer={this.resetTimer}
+                    />
+                 : <Play
+                    handlePlay={this.handlePlay}
+                    setTimer={this.setTimer}
+                  />
+                }
+              </div>
               <div className="timer">
                 <h2>
-                  <Timer
-                   minutes={this.state.minutes}
-                   seconds={this.state.seconds}
-                   cats={this.state.cats}
-                   likeArray={this.state.likeArray}
-                   dislikeArray={this.state.dislikeArray}
-                   skipArray={this.state.skipArray}
+                {this.state.minutes === 0 && this.state.seconds === 0
+                ? <Timer style={{ display: 'none' }}
                   />
+                : <Timer
+                     minutes={this.state.minutes}
+                     seconds={this.state.seconds}
+                     cats={this.state.cats}
+                  />
+                }
                  </h2>
               </div>
-              <Results
-                cats={this.state.cats}
-                likeArray={this.state.likeArray}
-                dislikeArray={this.state.dislikeArray}
-                skipArray={this.state.skipArray}
-                 />
+              <div className="results">
+                {this.state.minutes === 0 && this.state.seconds === 0
+                  ? <Results
+                      cats={this.state.cats}
+                      likeArray={this.state.likeArray}
+                      dislikeArray={this.state.dislikeArray}
+                      skipArray={this.state.skipArray}
+                      seenArray={this.state.seenArray}
+                    />
+                  : " " }
+              </div>
           </div>
           <div className="container-right">
             <div className="right-components">
@@ -153,23 +171,29 @@ class App extends Component {
                   <Like
                     cats={this.state.cats}
                     index={this.state.cats[this.state.index]}
-                    likeArray={this.state.likeArray}
                     handleCats={this.handleCats}
+                    likeArray={this.state.likeArray}
                     sortLikes={this.sortLikes}
+                    seenArray={this.state.seenArray}
+                    sortSeen={this.sortSeen}
                   />
                   <Dislike
                     cats={this.state.cats}
                     index={this.state.cats[this.state.index]}
-                    dislikeArray={this.state.dislikeArray}
                     handleCats={this.handleCats}
+                    dislikeArray={this.state.dislikeArray}
                     sortDislikes={this.sortDislikes}
+                    seenArray={this.state.seenArray}
+                    sortSeen={this.sortSeen}
                   />
                   <Skip
                     cats={this.state.cats}
                     index={this.state.cats[this.state.index]}
-                    skipArray={this.state.skipArray}
                     handleCats={this.handleCats}
+                    skipArray={this.state.skipArray}
                     sortSkips={this.sortSkips}
+                    seenArray={this.state.seenArray}
+                    sortSeen={this.sortSeen}
                   />
                 </div>
               </div>
