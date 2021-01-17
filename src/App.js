@@ -89,7 +89,16 @@ class App extends Component {
     this.setState({
       cats: this.state.cats,
       seenArray: this.state.seenArray.concat(this.state.cats[this.state.index])
-    })
+    });
+  }
+
+  resetArrays = () => {
+    this.setState({
+      likeArray: [],
+      dislikeArray: [],
+      skipArray: [],
+      seenArray: []
+    });
   }
 
   componentDidMount = () => {
@@ -119,6 +128,7 @@ class App extends Component {
                   handlePlay={this.handlePlay}
                   setTimer={this.setTimer}
                   resetTimer={this.resetTimer}
+                  resetArrays={this.resetArrays}
                   />
                : <Play
                   handlePlay={this.handlePlay}
