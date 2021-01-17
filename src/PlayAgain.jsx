@@ -13,7 +13,6 @@ class PlayAgain extends React.Component {
     }));
     console.log('test')
     this.props.resetTimer()
-    this.props.handlePlay()
     this.props.setTimer()
   };
 

@@ -10,6 +10,8 @@
                       <h2>Skips:{this.state.skipArray.length}</h2>
                     </div>
 
+                    {this.props.minutes === 0 ? `0${this.props.minutes}` : this.props.minutes}:
+
   handleCats = () => {
     this.setState({cats: [], index: this.state.index})
       let {cats, index} = this.state
