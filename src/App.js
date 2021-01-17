@@ -14,7 +14,7 @@ library.add(faForward, faHeart, faTimes)
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
       this.state = {
         seconds: 10,
         cats: [],
@@ -23,36 +23,33 @@ class App extends Component {
         dislikeArray: [],
         skipArray: [],
         seenArray: [],
-      };
+      }
   }
 
   handlePlay = () => {
    this.setState({
       seconds: this.state.seconds
     });
-  };
+  }
 
   setTimer = () => {
     this.timerInterval = setInterval(() => {
     const { seconds } = this.state
-    console.log(seconds)
       if (seconds > 0) {
         this.setState(({ seconds }) => ({
           seconds: seconds - 1
         }))
       } else {
         clearInterval(this.timerInterval)
-        console.log("hey")
       }
-    }, 1000)
-  };
+    }, 1000);
+  }
 
   resetTimer = () => {
     this.setState({
       seconds: 10
-    })
-    console.log(this.state.seconds)
-  };
+    });
+  }
 
   handleCats = () => {
     this.setState({
@@ -60,8 +57,14 @@ class App extends Component {
       cat: this.state.cats[this.state.index],
       index: this.state.index += 1
     });
-    // console.log(this.state.cats)
-  };
+  }
+
+  resetCats = () => {
+    this.setState({
+      cat: this.state.cats[this.state.index],
+      index: this.state.index = 0
+    });
+  }
 
   sortLikes = () => {
     this.setState({
@@ -129,6 +132,7 @@ class App extends Component {
                   setTimer={this.setTimer}
                   resetTimer={this.resetTimer}
                   resetArrays={this.resetArrays}
+                  resetCats={this.resetCats}
                   />
                : <Play
                   handlePlay={this.handlePlay}

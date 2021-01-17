@@ -15,6 +15,7 @@ class PlayAgain extends React.Component {
     this.props.resetTimer()
     this.props.setTimer()
     this.props.resetArrays()
+    this.props.resetCats()
   };
 
   render() {
