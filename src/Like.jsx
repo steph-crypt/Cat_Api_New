@@ -15,10 +15,10 @@ class Like extends React.Component {
 }
 
   render() {
-    const { cats, cat, index, likeArray, seenArray } = this.props;
+    const { cats, cat, index, likeArray, seenArray, isRunning } = this.props;
     return(
       <div className="buttons">
-        <button id="like" onClick={this.handleCatsClick}>
+        <button id="like" onClick={this.handleCatsClick} disabled={!this.props.isRunning}>
           <FontAwesomeIcon icon="heart" />
         </button>
       </div>

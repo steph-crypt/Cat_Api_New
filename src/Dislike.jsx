@@ -15,10 +15,10 @@ class Dislike extends React.Component {
   }
 
       render() {
-        const { cats, cat, index, dislikeArray, seenArray } = this.props;
+        const { cats, cat, index, dislikeArray, seenArray, isRunning } = this.props;
       return(
          <div className="buttons">
-          <button id="dislike" onClick={this.handleCatsClick}>
+          <button id="dislike" onClick={this.handleCatsClick} disabled={!this.props.isRunning}>
             <FontAwesomeIcon icon="times" />
           </button>
         </div>
