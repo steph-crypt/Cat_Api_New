@@ -10,6 +10,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 100vh;
 }
 
 .container-left {
@@ -19,7 +20,7 @@ body {
   flex: 2;
   height: 100vh;
   background: #fff;
-  max-width: 375px
+  max-width: 375px;
 }
 
 #header {
@@ -38,6 +39,16 @@ body {
   box-shadow: 0 4px 7px -3px grey;
 }
 
+h3 {
+  display: flex;
+  font-family: 'Roboto';
+  margin-top: 40px;
+  font-size: 20px;
+  color: black;
+  text-align: center;
+  padding: 10px;
+}
+
 .dynamic-components {
   display: flex;
   flex-direction: column;
@@ -54,7 +65,7 @@ body {
   font-size: 32px;
   border: 3px solid white;
   box-shadow: 1px 2px 6px grey;
-  margin: 50px 40px;
+  margin: 30px 0px;
   justify-content: center;
   align-items: center;
   font-family: Roboto;
@@ -76,7 +87,7 @@ body {
   font-size: 32px;
   border: 3px solid white;
   box-shadow: 1px 2px 6px grey;
-/*  margin: 50px 40px;*/
+  margin: 30px 0px;
   justify-content: center;
   align-items: center;
   font-family: Roboto;
@@ -102,21 +113,12 @@ body {
   font-size: 20px;
   font-family: Roboto;
   color: black;
+  margin-bottom: 20px;
 }
 
 .like-results strong {
   color: #ef6a57;
 }
-
-/*.like-results h1 {
-  display: flex;
-  justify-content: center;
-}
-
-.like-results p {
-  display: flex;
-  justify-content: center;
-}*/
 
 .container-right {
   display: flex;
@@ -159,7 +161,6 @@ body {
   width: 100%;
   border-radius: 0 0 10px 10px;
   background: linear-gradient(180deg, #00000000, #000000);
-  text-shadow: 1px 1px 2px black;
 }
 
 .cat-info h1 {
@@ -177,7 +178,6 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 35px;
-
 }
 
 #like {
@@ -188,13 +188,14 @@ body {
   font-size: 33px;
   color: #ff99db;
   border: 2px solid #fbc9d5ed;
-  box-shadow: 0px 1px 8px 0px #cecece;
+  box-shadow: 0px 1px 8px 0px #000;
   margin: 10px;
 }
 
 #like:hover {
   background: #ffd7de;
   color: #f7010c;
+  border: 2px solid #ff7854;
 }
 
 #dislike {
@@ -205,13 +206,14 @@ body {
   font-size: 33px;
   color: #5d86fb;
   border: 2px solid #fbc9d5ed;
-  box-shadow: 0px 1px 8px 0px #cecece;
+  box-shadow: 0px 1px 8px 0px #000;
   margin: 10px;
 }
 
 #dislike:hover {
   background: #e7eaff;
-  color: #0948f9
+  color: #0948f9;
+  border: 2px solid #ff7854;
 }
 
 #skip {
@@ -222,11 +224,12 @@ body {
   font-size: 33px;
   color: #b8ffbb;
   border: 2px solid #fbc9d5ed;
-  box-shadow: 0px 1px 8px 0px #cecece;
+  box-shadow: 0px 1px 8px 0px #000;
   margin: 10px;
 }
 
 #skip:hover {
   background: #e9ffd9;
   color: #73ff79;
+  border: 2px solid #ff7854;
 }

@@ -1,24 +1,26 @@
 import React from "react";
 
 class PlayAgain extends React.Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
-    this.state = {isPlayOn: true};
-    this.handlePlayAgain = this.handlePlayAgain.bind(this);
+    this.state = {seconds: 0, minutes: 1, isPlayOn: true};
+    this.resetTimer = this.resetTimer.bind(this);
   }
 
-  handlePlayAgain() {
+  resetTimer() {
     this.setState(state => ({
+      seconds: state.seconds === 0,
+      minutes: state.minutes === 1,
       isPlayOn: !state.isPlayOn
     }));
-    console.log("play it again sam")
+    console.log('test')
     this.props.handlePlay()
     this.props.setTimer()
-  }
+  };
 
   render() {
     return (
-      <button id="play-again" onClick={this.handlePlayAgain}>Play Again</button>
+      <button id="play-again" onClick={this.resetTimer}>Play Again</button>
     );
   }
 }

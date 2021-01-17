@@ -54,6 +54,14 @@ class App extends Component {
     }, 1000)
   };
 
+  // resetTimer = () => {
+  //   this.setState({
+  //     seconds: 0,
+  //     minutes: 1
+  //   })
+  //   console.log("reset")
+  // };
+
   handleCats = () => {
     this.setState({
       cats: this.state.cats,
@@ -102,18 +110,19 @@ class App extends Component {
         <div className="container">
           <div className="container-left">
             <h1 id="header">Kitty Tinder</h1>
-              <Play
+            {this.state.minutes === 0 && this.state.seconds === 0
+             ? <PlayAgain
+                handlePlay={this.handlePlay}
+                setTimer={this.setTimer}
+                />
+             : <Play
                 handlePlay={this.handlePlay}
                 setTimer={this.setTimer}
               />
-              <PlayAgain
-                handlePlay={this.handlePlay}
-                setTimer={this.setTimer}
-              />
-               <div className="timer">
+            }
+              <div className="timer">
                 <h2>
                   <Timer
-                   time={this.state.time}
                    minutes={this.state.minutes}
                    seconds={this.state.seconds}
                    cats={this.state.cats}
