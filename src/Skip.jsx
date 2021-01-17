@@ -15,10 +15,10 @@ class Skip extends React.Component {
   }
 
       render() {
-        const { cats, cat, index, skipArray} = this.props;
+        const { cats, cat, index, skipArray, isRunning} = this.props;
       return(
         <div className="buttons">
-          <button id="skip" onClick={this.handleCatsClick}>
+          <button id="skip" onClick={this.handleCatsClick} disabled={!this.props.isRunning}>
             <FontAwesomeIcon icon="forward" />
           </button>
         </div>

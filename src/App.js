@@ -16,8 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        minutes: 1,
-        seconds: 0,
+        seconds: 10,
         cats: [],
         index: 0,
         likeArray: [],
@@ -29,38 +28,30 @@ class App extends Component {
 
   handlePlay = () => {
    this.setState({
-      seconds: this.state.seconds,
-      minutes: this.state.minutes
+      seconds: this.state.seconds
     });
   };
 
   setTimer = () => {
     this.timerInterval = setInterval(() => {
-    const { seconds, minutes } = this.state
+    const { seconds } = this.state
+    console.log(seconds)
       if (seconds > 0) {
         this.setState(({ seconds }) => ({
           seconds: seconds - 1
         }))
-      }
-      if (seconds === 0) {
-        if (minutes === 0) {
-          clearInterval(this.timerInterval)
-        } else {
-          this.setState(({ minutes }) => ({
-            minutes: minutes - 1,
-            seconds: 59
-          }))
-        }
+      } else {
+        clearInterval(this.timerInterval)
+        console.log("hey")
       }
     }, 1000)
   };
 
   resetTimer = () => {
-    clearInterval(this.timerInterval)
     this.setState({
-      minutes: 1
+      seconds: 10
     })
-    console.log(this.state.minutes)
+    console.log(this.state.seconds)
   };
 
   handleCats = () => {
@@ -69,7 +60,7 @@ class App extends Component {
       cat: this.state.cats[this.state.index],
       index: this.state.index += 1
     });
-    console.log(this.state.cats)
+    // console.log(this.state.cats)
   };
 
   sortLikes = () => {
@@ -114,94 +105,98 @@ class App extends Component {
   };
 
   render() {
-      return (
-        <div className="container">
-          <div className="container-left">
-            <h1 id="header">Kitty Tinder</h1>
-              <h3>You have 1 minute to choose your favorite and least favorite cats!</h3>
-              <div className="play">
-                {this.state.minutes === 0 && this.state.seconds === 0
-                 ? <PlayAgain
-                    handlePlay={this.handlePlay}
-                    setTimer={this.setTimer}
-                    resetTimer={this.resetTimer}
-                    />
-                 : <Play
-                    handlePlay={this.handlePlay}
-                    setTimer={this.setTimer}
+    const isRunning = this.state.seconds < 10 && this.state.seconds > 0
+    console.log(isRunning)
+    return (
+      <div className="container">
+        <div className="container-left">
+          <h1 id="header">Kitty Tinder</h1>
+            {}
+            <h3>You have 1 minute to choose your favorite and least favorite cats!</h3>
+            <div className="play">
+              {this.state.seconds === 0
+               ? <PlayAgain
+                  handlePlay={this.handlePlay}
+                  setTimer={this.setTimer}
+                  resetTimer={this.resetTimer}
                   />
-                }
-              </div>
-              <div className="timer">
-                <h2>
-                {this.state.minutes === 0 && this.state.seconds === 0
-                ? <Timer style={{ display: 'none' }}
-                  />
-                : <Timer
-                     minutes={this.state.minutes}
-                     seconds={this.state.seconds}
-                     cats={this.state.cats}
-                  />
-                }
-                 </h2>
-              </div>
-              <div className="results">
-                {this.state.minutes === 0 && this.state.seconds === 0
-                  ? <Results
-                      cats={this.state.cats}
-                      likeArray={this.state.likeArray}
-                      dislikeArray={this.state.dislikeArray}
-                      skipArray={this.state.skipArray}
-                      seenArray={this.state.seenArray}
-                    />
-                  : " " }
-              </div>
-          </div>
-          <div className="container-right">
-            <div className="right-components">
-              {this.state.cats.length
-                ? <Cat
-                      cat={this.state.cats[this.state.index]}
-                      key={this.state.cats.id}
-                  />
-                : null
+               : <Play
+                  handlePlay={this.handlePlay}
+                  setTimer={this.setTimer}
+                />
               }
-              <div className="button-parent">
-                <div className="like-buttons">
-                  <Like
+            </div>
+            <div className="timer">
+              <h2>
+              {!(this.state.seconds === 0)
+              &&
+                <Timer
+                   minutes={this.state.minutes}
+                   seconds={this.state.seconds}
+                   cats={this.state.cats}
+                />
+              }
+               </h2>
+            </div>
+            <div className="results">
+              {(this.state.seconds === 0)
+              &&  <Results
                     cats={this.state.cats}
-                    index={this.state.cats[this.state.index]}
-                    handleCats={this.handleCats}
                     likeArray={this.state.likeArray}
-                    sortLikes={this.sortLikes}
-                    seenArray={this.state.seenArray}
-                    sortSeen={this.sortSeen}
-                  />
-                  <Dislike
-                    cats={this.state.cats}
-                    index={this.state.cats[this.state.index]}
-                    handleCats={this.handleCats}
                     dislikeArray={this.state.dislikeArray}
-                    sortDislikes={this.sortDislikes}
-                    seenArray={this.state.seenArray}
-                    sortSeen={this.sortSeen}
-                  />
-                  <Skip
-                    cats={this.state.cats}
-                    index={this.state.cats[this.state.index]}
-                    handleCats={this.handleCats}
                     skipArray={this.state.skipArray}
-                    sortSkips={this.sortSkips}
                     seenArray={this.state.seenArray}
-                    sortSeen={this.sortSeen}
                   />
-                </div>
+              }
+            </div>
+        </div>
+        <div className="container-right">
+          <div className="right-components">
+            {(this.state.cats.length)
+              && <Cat
+                    cat={this.state.cats[this.state.index]}
+                    key={this.state.cats.id}
+                />
+            }
+            <div className="button-parent">
+              <div className="like-buttons">
+                <Like
+                  cats={this.state.cats}
+                  index={this.state.cats[this.state.index]}
+                  handleCats={this.handleCats}
+                  likeArray={this.state.likeArray}
+                  sortLikes={this.sortLikes}
+                  seenArray={this.state.seenArray}
+                  sortSeen={this.sortSeen}
+                  isRunning={isRunning}
+                />
+                <Dislike
+                  cats={this.state.cats}
+                  index={this.state.cats[this.state.index]}
+                  handleCats={this.handleCats}
+                  dislikeArray={this.state.dislikeArray}
+                  sortDislikes={this.sortDislikes}
+                  seenArray={this.state.seenArray}
+                  sortSeen={this.sortSeen}
+                  isRunning={isRunning}
+                />
+                <Skip
+                  cats={this.state.cats}
+                  index={this.state.cats[this.state.index]}
+                  handleCats={this.handleCats}
+                  skipArray={this.state.skipArray}
+                  sortSkips={this.sortSkips}
+                  seenArray={this.state.seenArray}
+                  sortSeen={this.sortSeen}
+                  isRunning={isRunning}
+                />
               </div>
             </div>
           </div>
         </div>
-        )
-      }
+      </div>
+      )
+    }
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
