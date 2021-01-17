@@ -18,7 +18,7 @@ class Play extends React.Component {
 
   render() {
     return (
-      <button id="play-button" onClick={this.handlePlayClick}>Play</button>
+      <button id="play-button" onClick={this.handlePlayClick} disabled={this.props.isRunning}>Play</button>
     );
   }
 }

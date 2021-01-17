@@ -123,6 +123,7 @@ class App extends Component {
                : <Play
                   handlePlay={this.handlePlay}
                   setTimer={this.setTimer}
+                  isRunning={isRunning}
                 />
               }
             </div>
