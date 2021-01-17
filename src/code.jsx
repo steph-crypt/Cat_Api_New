@@ -1,3 +1,7 @@
+                   likeArray={this.state.likeArray}
+                   dislikeArray={this.state.dislikeArray}
+                   skipArray={this.state.skipArray}
+
 { this.state.minutes === 0 && this.state.seconds === 0
                   ? <div className="time-scores">
                       <h1>Total Cats Seen:{this.state.cats.length}</h1>
