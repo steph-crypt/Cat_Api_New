@@ -106,6 +106,10 @@ h3 {
   text-shadow: 1px 1px 3px grey;
 }
 
+#timer strong {
+  font-size: 30px;
+}
+
 .like-results {
   display: flex;
   flex-direction: column;
