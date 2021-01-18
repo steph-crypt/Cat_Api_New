@@ -237,3 +237,58 @@ h3 {
   color: #73ff79;
   border: 2px solid #ff7854;
 }
+
+@media only screen and (max-device-width : 300px) {
+  .container {
+    display: block;
+    height: 100vh;
+  }
+
+  .card > img {
+    height: 260px;
+    width: 260px;
+  }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .container {
+    display: block;
+    height: 100vh;
+  }
+
+  .card > img {
+    height: 335px;
+    width: 335px;
+}
+
+@media only screen and (min-width : 321px) {
+  .container-left {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width : 320px) {
+  .card > img {
+    height: 300px;
+    width: 300px;
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .container {
+    display: block;
+  }
+}
+
+@media only screen and (min-width : 540px) and (max-height : 720px) {
+  .container-right {
+    height: 114vh;
+  }
+
+  .like-results h2 {
+    align-items: center;
+  }
+}
+
+
+
