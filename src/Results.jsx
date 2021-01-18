@@ -16,8 +16,8 @@ class Results extends React.Component {
             <h2>Dislikes: <strong>{this.props.dislikeArray.length}</strong></h2>
             <h2>Skips: <strong>{this.props.skipArray.length}</strong></h2>
       </div>
-      )
-    }
+    );
+  }
 }
 
 export default Results;

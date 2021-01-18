@@ -8,11 +8,11 @@ class Like extends React.Component {
     this.handleCatsClick = this.handleCatsClick.bind(this)
   }
 
- handleCatsClick() {
-  this.props.handleCats();
-  this.props.sortLikes();
-  this.props.sortSeen();
-}
+  handleCatsClick() {
+    this.props.handleCats();
+    this.props.sortLikes();
+    this.props.sortSeen();
+  }
 
   render() {
     const { cats, cat, index, likeArray, seenArray, isRunning } = this.props;

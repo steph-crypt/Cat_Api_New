@@ -15,7 +15,7 @@ class Cat extends Component {
             <p><em>{cat.temperament}</em></p>
         </div>
       </div>
-    )
+    );
   }
 }
 
