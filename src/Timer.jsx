@@ -1,7 +1,4 @@
 import React from "react";
-// import PlayAgain from "PlayAgain";
-//when Play is clicked - Timer should mount and begin countdown.
-// when timer reaches zero - it should unmount and run the like specs.
 
 class Timer extends React.Component {
    constructor(props) {
