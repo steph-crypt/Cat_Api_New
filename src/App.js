@@ -52,16 +52,12 @@ class App extends Component {
   }
 
   handleCats = () => {
-    if (this.state.cats.length) {
     this.setState({
       cats: this.state.cats,
       cat: this.state.cats[this.state.index],
       index: this.state.index += 1
     });
-  } else {
-    index: this.state.index
   }
-  };
 
   resetCats = () => {
     this.setState({
@@ -127,51 +123,51 @@ class App extends Component {
       <div className="container">
         <div className="container-left">
           <h1 id="header">Kitty Tinder</h1>
-            {}
             <h3>You have 1 minute to choose your favorite and least favorite cats!</h3>
-            <div className="play">
-              {this.state.seconds === 0
-               ? <PlayAgain
-                  handlePlay={this.handlePlay}
-                  setTimer={this.setTimer}
-                  resetTimer={this.resetTimer}
-                  resetArrays={this.resetArrays}
-                  resetCats={this.resetCats}
+              <div className="play">
+                {this.state.seconds === 0
+                 ? <PlayAgain
+                    handlePlay={this.handlePlay}
+                    setTimer={this.setTimer}
+                    resetTimer={this.resetTimer}
+                    resetArrays={this.resetArrays}
+                    resetCats={this.resetCats}
+                    />
+                 : <Play
+                    handlePlay={this.handlePlay}
+                    setTimer={this.setTimer}
+                    isRunning={isRunning}
                   />
-               : <Play
-                  handlePlay={this.handlePlay}
-                  setTimer={this.setTimer}
-                  isRunning={isRunning}
-                />
-              }
-            </div>
-            <div className="timer">
-              <h2>
-              {!(this.state.seconds === 0)
-              &&
-                <Timer
-                   minutes={this.state.minutes}
-                   seconds={this.state.seconds}
-                   cats={this.state.cats}
-                />
-              }
-               </h2>
-            </div>
-            <div className="results">
-              {(this.state.seconds === 0)
-              &&  <Results
+                }
+              </div>
+              <div className="timer">
+                <h2>
+                {!(this.state.seconds === 0)
+                &&
+                  <Timer
+                    minutes={this.state.minutes}
+                    seconds={this.state.seconds}
+                     ats={this.state.cats}
+                  />
+                }
+                 </h2>
+              </div>
+              <div className="results">
+                {(this.state.seconds === 0)
+                &&
+                  <Results
                     cats={this.state.cats}
                     likeArray={this.state.likeArray}
                     dislikeArray={this.state.dislikeArray}
                     skipArray={this.state.skipArray}
                     seenArray={this.state.seenArray}
                   />
-              }
-            </div>
+                }
+              </div>
         </div>
         <div className="container-right">
           <div className="right-components">
-            {(this.state.cats.length && this.state.cats[this.state.index].image )
+            {(this.state.cats.length && this.state.cats[this.state.index].image)
               ? <Cat
                     cat={this.state.cats[this.state.index]}
                     key={this.state.cats.id}

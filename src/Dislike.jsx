@@ -14,14 +14,14 @@ class Dislike extends React.Component {
     this.props.sortSeen();
   }
 
-      render() {
-        const { cats, cat, index, dislikeArray, seenArray, isRunning } = this.props;
-      return(
-         <div className="buttons">
-          <button id="dislike" onClick={this.handleCatsClick} disabled={!this.props.isRunning}>
-            <FontAwesomeIcon icon="times" />
-          </button>
-        </div>
+  render() {
+    const { cats, cat, index, dislikeArray, seenArray, isRunning } = this.props;
+    return(
+       <div className="buttons">
+        <button id="dislike" onClick={this.handleCatsClick} disabled={!this.props.isRunning}>
+          <FontAwesomeIcon icon="times" />
+        </button>
+      </div>
     );
   }
 }
