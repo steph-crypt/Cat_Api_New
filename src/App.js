@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props) {
     super(props)
       this.state = {
-        seconds: 10,
+        seconds: 60,
         cats: [],
         index: 0,
         likeArray: [],
@@ -47,17 +47,21 @@ class App extends Component {
 
   resetTimer = () => {
     this.setState({
-      seconds: 10
+      seconds: 60
     });
   }
 
   handleCats = () => {
+    if (this.state.cats.length) {
     this.setState({
       cats: this.state.cats,
       cat: this.state.cats[this.state.index],
       index: this.state.index += 1
     });
+  } else {
+    index: this.state.index
   }
+  };
 
   resetCats = () => {
     this.setState({
@@ -117,7 +121,7 @@ class App extends Component {
   };
 
   render() {
-    const isRunning = this.state.seconds < 10 && this.state.seconds > 0
+    const isRunning = this.state.seconds < 60 && this.state.seconds > 0
     console.log(isRunning)
     return (
       <div className="container">
@@ -167,12 +171,20 @@ class App extends Component {
         </div>
         <div className="container-right">
           <div className="right-components">
-            {(this.state.cats.length)
-              && <Cat
+            {(this.state.cats.length && this.state.cats[this.state.index].image )
+              ? <Cat
                     cat={this.state.cats[this.state.index]}
                     key={this.state.cats.id}
                 />
+              : <div className="card">
+                  <img src="http://placekitten.com/200/300" alt="kitten-substitute" />
+                  <div className="cat-info">
+                    <h1>Garfield Impersonator</h1>
+                      <p><em>Lazy, proud, hungry</em></p>
+                  </div>
+                </div>
             }
+
             <div className="button-parent">
               <div className="like-buttons">
                 <Like
